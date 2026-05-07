@@ -1,6 +1,7 @@
 // pages/api/recommendations.ts
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getAIRecommendations, getMockSkinAnalysis } from '../../lib/recommendations';
+import { getAIRecommendations } from '../../lib/recommendations';
+import { getMockSkinAnalysis } from '../../lib/youcam';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') return res.status(405).end();
