@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --aura-black: #0A0A0A;
+  --aura-cream: #F5F0E8;
+  --aura-rose: #E8A598;
+  --aura-blush: #F2C4BB;
+  --aura-sage: #8BAF8D;
+  --aura-gold: #C9A96E;
+  --aura-deep: #1A1025;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--aura-black);
+  color: var(--aura-cream);
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Noise texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--aura-black); }
+::-webkit-scrollbar-thumb { background: var(--aura-rose); border-radius: 2px; }
+
+/* Glass morphism card */
+.glass {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.glass-light {
+  background: rgba(245,240,232,0.06);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(245,240,232,0.1);
+}
+
+/* Gradient text */
+.text-gradient {
+  background: linear-gradient(135deg, var(--aura-rose) 0%, var(--aura-gold) 50%, var(--aura-blush) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-sage {
+  background: linear-gradient(135deg, var(--aura-sage) 0%, var(--aura-mist, #D4DCE8) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Button styles */
+.btn-primary {
+  background: linear-gradient(135deg, var(--aura-rose), var(--aura-gold));
+  color: var(--aura-black);
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(232,165,152,0.4);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--aura-cream);
+  font-weight: 500;
+  padding: 12px 28px;
+  border-radius: 50px;
+  border: 1px solid rgba(245,240,232,0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.btn-ghost:hover {
+  background: rgba(245,240,232,0.06);
+  border-color: rgba(245,240,232,0.4);
+}
+
+/* Score ring */
+.score-ring {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* AR overlay frame */
+.ar-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.ar-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(232,165,152,0.1) 0%,
+    transparent 30%,
+    transparent 70%,
+    rgba(201,169,110,0.1) 100%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Scan line animation */
+.scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--aura-rose), transparent);
+  animation: scan 2s ease-in-out infinite;
+  z-index: 3;
+}
+
+/* Product card hover */
+.product-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* Compatibility badge */
+.compat-high { color: var(--aura-sage); border-color: var(--aura-sage); }
+.compat-med  { color: var(--aura-gold); border-color: var(--aura-gold); }
+.compat-low  { color: #E8A598; border-color: #E8A598; }
+
+/* Section fade-in */
+.fade-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fade-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
