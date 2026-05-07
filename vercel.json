@@ -2,11 +2,5 @@
   "framework": "nextjs",
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
-  "installCommand": "npm install",
-  "regions": ["iad1"],
-  "env": {
-    "YOUCAM_API_KEY": "@youcam_api_key",
-    "YOUCAM_API_SECRET": "@youcam_api_secret",
-    "OPENAI_API_KEY": "@openai_api_key"
-  }
+  "installCommand": "npm install"
 }
